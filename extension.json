@@ -1,0 +1,15 @@
+{
+  "id": "preview-sidebar",
+  "name": "preview-sidebar",
+  "srcdoc": "./build/index.html",
+  "sidebar": true,
+  "parameters": {
+    "installation": [
+      {
+        "id": "previewUrl",
+        "type": "Symbol",
+        "name": "The preview url of the site"
+      }
+    ]
+  }
+}
