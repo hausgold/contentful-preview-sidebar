@@ -71,7 +71,7 @@ export class SidebarExtension extends React.Component {
     return (
       <Fragment>
         <Button
-          buttonType="positive"
+          buttonType="muted"
           icon="ExternalLink"
           isFullWidth={true}
           testId="open-dialog"
