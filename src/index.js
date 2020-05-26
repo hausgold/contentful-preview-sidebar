@@ -37,19 +37,36 @@ export class SidebarExtension extends React.Component {
     this.props.sdk.window.startAutoResizer();
   }
 
-  onPreviewButtonClick = async () => {
+  previewUrl = async () => {
     const {
       parameters: { installation },
-      entry
+      entry,
+      space
     } = this.props.sdk;
     const { previewUrl } = installation;
-    const { slug: contentSlug } = entry.fields;
-    window.open(previewUrl + '/' + (contentSlug && contentSlug.getValue()));
-    // const result = await this.props.sdk.dialogs.openExtension({
-    //   width: 800,
-    //   title: 'preview'
-    // });
-    // console.log(result);
+    const { slug: contentSlug, category } = entry.fields;
+    const {
+      contentType: {
+        sys: { id: contentType }
+      }
+    } = entry.getSys();
+
+    let path;
+
+    if (contentType === 'blogPost') {
+      const categoryId = category.getValue().sys.id;
+      const sysCategory = await space.getEntry(categoryId);
+      const categorySlug = sysCategory.fields.slug['de-DE'];
+      path = '/ratgeber/' + categorySlug + '/';
+    } else {
+      path = '/';
+    }
+    return previewUrl + path + (contentSlug && contentSlug.getValue());
+  };
+
+  onPreviewButtonClick = async () => {
+    const uri = await this.previewUrl();
+    window.open(uri);
   };
 
   onUpdateButtonClick = async () => {
