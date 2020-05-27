@@ -9,6 +9,11 @@
         "id": "previewUrl",
         "type": "Symbol",
         "name": "The preview url of the site"
+      },
+      {
+        "id": "productionUrl",
+        "type": "Symbol",
+        "name": "The production url of the site"
       }
     ]
   }

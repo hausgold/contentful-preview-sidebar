@@ -37,13 +37,8 @@ export class SidebarExtension extends React.Component {
     this.props.sdk.window.startAutoResizer();
   }
 
-  previewUrl = async () => {
-    const {
-      parameters: { installation },
-      entry,
-      space
-    } = this.props.sdk;
-    const { previewUrl } = installation;
+  getUrl = async domain => {
+    const { entry, space } = this.props.sdk;
     const { slug: contentSlug, category } = entry.fields;
     const {
       contentType: {
@@ -61,11 +56,11 @@ export class SidebarExtension extends React.Component {
     } else {
       path = '/';
     }
-    return previewUrl + path + (contentSlug && contentSlug.getValue());
+    return domain + path + (contentSlug && contentSlug.getValue());
   };
 
-  onPreviewButtonClick = async () => {
-    const uri = await this.previewUrl();
+  onButtonClick = async domain => {
+    const uri = await this.getUrl(domain);
     window.open(uri);
   };
 
@@ -85,6 +80,11 @@ export class SidebarExtension extends React.Component {
   };
 
   render() {
+    const {
+      parameters: { installation }
+    } = this.props.sdk;
+    const { productionUrl, previewUrl } = installation;
+
     return (
       <Fragment>
         <Button
@@ -92,8 +92,18 @@ export class SidebarExtension extends React.Component {
           icon="ExternalLink"
           isFullWidth={true}
           testId="open-dialog"
-          onClick={this.onPreviewButtonClick}>
+          onClick={() => this.onButtonClick(previewUrl)}>
           Open Preview
+        </Button>
+        <br />
+        <br />
+        <Button
+          buttonType="muted"
+          icon="ExternalLink"
+          isFullWidth={true}
+          testId="open-dialog"
+          onClick={() => this.onButtonClick(productionUrl)}>
+          Open Live
         </Button>
         <br />
         <br />
