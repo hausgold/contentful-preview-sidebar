@@ -38,7 +38,7 @@ export class SidebarExtension extends React.Component {
   }
 
   getUrl = async domain => {
-    const { entry, space } = this.props.sdk;
+    const { entry, space, locales } = this.props.sdk;
     const { slug: contentSlug, category } = entry.fields;
     const {
       contentType: {
@@ -51,8 +51,10 @@ export class SidebarExtension extends React.Component {
     if (contentType === 'blogPost') {
       const categoryId = category.getValue().sys.id;
       const sysCategory = await space.getEntry(categoryId);
-      const categorySlug = sysCategory.fields.slug['de-DE'];
-      path = '/ratgeber/' + categorySlug + '/';
+      const categorySlug = sysCategory.fields.slug[locales.default];
+      path = '/' + categorySlug + '/';
+    } else if (contentType === 'page') {
+      path = '/';
     } else {
       path = '/';
     }
