@@ -77,7 +77,7 @@ export class SidebarExtension extends React.Component {
     return domain + path + (contentSlug && contentSlug.getValue());
   };
 
-  onButtonClick = async domain => {
+  onPreviewButtonClick = async domain => {
     const uri = await this.getUrl(domain);
     window.open(uri);
   };
@@ -110,7 +110,7 @@ export class SidebarExtension extends React.Component {
           icon="ExternalLink"
           isFullWidth={true}
           testId="open-dialog"
-          onClick={() => this.onButtonClick(previewUrl)}>
+          onClick={() => this.onPreviewButtonClick(previewUrl)}>
           Open Preview
         </Button>
         <br />
@@ -120,7 +120,7 @@ export class SidebarExtension extends React.Component {
           icon="ExternalLink"
           isFullWidth={true}
           testId="open-dialog"
-          onClick={() => this.onButtonClick(productionUrl)}>
+          onClick={() => this.onPreviewButtonClick(productionUrl)}>
           Open Live
         </Button>
         <br />
