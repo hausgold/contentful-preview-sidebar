@@ -39,12 +39,15 @@ export class SidebarExtension extends React.Component {
 
   getUrl = async domain => {
     const { entry, space, locales } = this.props.sdk;
-    const { slug: contentSlug, category } = entry.fields;
+    const { slug: contentSlug, category, template } = entry.fields;
+
+
     const {
       contentType: {
         sys: { id: contentType }
       }
     } = entry.getSys();
+
 
     let path;
 
@@ -54,7 +57,20 @@ export class SidebarExtension extends React.Component {
       const categorySlug = sysCategory.fields.slug[locales.default];
       path = '/' + categorySlug + '/';
     } else if (contentType === 'page') {
-      path = '/';
+      let parentSlug;
+        if(template.getValue() === "Landingpage") {
+          parentSlug ="lp";
+        } else {
+          const parentPage = await space.getEntries({
+            'content_type': 'page',
+            select: 'fields.slug',
+            'fields.childPages.sys.id': entry.getSys().id
+          });
+          parentSlug = parentPage.items.length > 0 ? parentPage.items[0].fields.slug[locales.default] : null;
+
+        }
+      path = parentSlug ? '/' + parentSlug + '/' : '/';
+
     } else {
       path = '/';
     }
