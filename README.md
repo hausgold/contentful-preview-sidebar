@@ -35,7 +35,7 @@ Follow the instructions in the console, open the browser and copy the created to
 
 ```bash
 # Add space-id and choose a space
-$ contentful use space 5qea3umoe8gl
+$ contentful use space {id}
 # Start project
 $ npm run start
 
