@@ -33,6 +33,10 @@ export class SidebarExtension extends React.Component {
     return '/' + 'lp' + '/' + slug;
   }
 
+  getMaklerpageUrl(entry, slug) {
+    return '/' + 'fuer-makler' + '/' + slug;
+  }
+
   getPageUrl= async (entry, space, locales, slug) => {
     const parentPage = await space.getEntries({
       'content_type': 'page',
@@ -67,6 +71,10 @@ export class SidebarExtension extends React.Component {
 
     if (contentType === 'page' && template === 'Landingpage') {
       path = this.getLandingpageUrl(entry, slugValue);
+    }
+
+    if (contentType === 'page' && template === 'Makler') {
+      path = this.getMaklerpageUrl(entry, slugValue);
     }
 
     if (contentType === 'page'){
