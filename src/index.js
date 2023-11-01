@@ -69,16 +69,14 @@ export class SidebarExtension extends React.Component {
       path = await this.getBlogPostUrl(entry, space, locales, slugValue);
     }
 
-    if (contentType === 'page' && template === 'Landingpage') {
-      path = this.getLandingpageUrl(entry, slugValue);
-    }
-
-    if (contentType === 'page' && template === 'Makler') {
-      path = this.getMaklerpageUrl(entry, slugValue);
-    }
-
     if (contentType === 'page'){
-      path = await this.getPageUrl(entry, space, locales, slugValue);
+      if (template === 'Landingpage') {
+        path = this.getLandingpageUrl(entry, slugValue);
+      } else if (template === 'Makler') {
+        path = this.getMaklerpageUrl(entry, slugValue);
+      } else {
+        path = await this.getPageUrl(entry, space, locales, slugValue);
+      }
     }
 
     window.open(domain + path, '_blank');
