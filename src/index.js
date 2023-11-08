@@ -55,6 +55,7 @@ export class SidebarExtension extends React.Component {
   onLinkButtonClick = async domain => {
     const { entry, space, locales} = this.props.sdk;
     const { template, slug } = entry.fields;
+    const templateValue = template?.getValue();
     const slugValue = slug.getValue();
 
     const {
@@ -70,9 +71,9 @@ export class SidebarExtension extends React.Component {
     }
 
     if (contentType === 'page'){
-      if (template === 'Landingpage') {
+      if (templateValue === 'Landingpage') {
         path = this.getLandingpageUrl(entry, slugValue);
-      } else if (template === 'Makler') {
+      } else if (templateValue === 'Makler') {
         path = this.getMaklerpageUrl(entry, slugValue);
       } else {
         path = await this.getPageUrl(entry, space, locales, slugValue);
