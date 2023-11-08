@@ -80,7 +80,7 @@ export class SidebarExtension extends React.Component {
       }
     }
 
-    window.open(domain + path, '_blank');
+    window.open(domain.replace(/\/$/, '') + path, '_blank');
   };
 
   onUpdateButtonClick = async () => {
