@@ -24,7 +24,7 @@ export class SidebarExtension extends React.Component {
 
   getBlogPostUrl = async (entry, space, locales, slug) => {
     const { category } = entry.fields;
-    const categorySlug = this.getCategorySlug(category, space, locales)
+    const categorySlug = await this.getCategorySlug(category, space, locales)
 
     return '/' + categorySlug + '/' + slug;
   }
