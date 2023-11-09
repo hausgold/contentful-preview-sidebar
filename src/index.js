@@ -24,7 +24,7 @@ export class SidebarExtension extends React.Component {
 
   getBlogPostUrl = async (entry, space, locales, slug) => {
     const { category } = entry.fields;
-    const categorySlug = this.getCategorySlug(category, space, locales)
+    const categorySlug = await this.getCategorySlug(category, space, locales)
 
     return '/' + categorySlug + '/' + slug;
   }
@@ -55,6 +55,7 @@ export class SidebarExtension extends React.Component {
   onLinkButtonClick = async domain => {
     const { entry, space, locales} = this.props.sdk;
     const { template, slug } = entry.fields;
+    const templateValue = template?.getValue();
     const slugValue = slug.getValue();
 
     const {
@@ -70,16 +71,16 @@ export class SidebarExtension extends React.Component {
     }
 
     if (contentType === 'page'){
-      if (template === 'Landingpage') {
+      if (templateValue === 'Landingpage') {
         path = this.getLandingpageUrl(entry, slugValue);
-      } else if (template === 'Makler') {
+      } else if (templateValue === 'Makler') {
         path = this.getMaklerpageUrl(entry, slugValue);
       } else {
         path = await this.getPageUrl(entry, space, locales, slugValue);
       }
     }
 
-    window.open(domain + path, '_blank');
+    window.open(domain.replace(/\/$/, '') + path, '_blank');
   };
 
   onUpdateButtonClick = async () => {
