@@ -43,7 +43,7 @@ $ npm run start
 
 ### Contentful documentation
 
-Unfortunately, not everything is well documented, scince ui extensions are deprecated in favour of apps on Contentful, but here are links that may help:
+Unfortunately, not everything is well documented, since ui extensions are deprecated in favour of apps on Contentful, but here are links that may help:
 
 - [Contentful content APIs](https://www.contentful.com/developers/docs/concepts/apis/)
 - [Content Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/)
