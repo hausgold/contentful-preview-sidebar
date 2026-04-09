@@ -10,7 +10,7 @@
     "@contentful/contentful-extension-scripts": "0.16.0",
     "@contentful/eslint-config-extension": "0.3.1",
     "@testing-library/react": "8.0.4",
-    "contentful-cli": "^0.33.2",
+    "contentful-cli": "^3.10.4",
     "cssnano": "4.1.10",
     "eslint": "^6.0.1"
   },
@@ -30,7 +30,7 @@
     "@contentful/forma-36-fcss": "^0.0.35",
     "@contentful/forma-36-react-components": "^3.100.0",
     "@contentful/forma-36-tokens": "^0.5.2",
-    "contentful": "^9.1.18",
+    "contentful": "^9.3.7",
     "contentful-ui-extensions-sdk": "3.13.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
